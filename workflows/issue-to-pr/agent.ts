@@ -59,10 +59,10 @@ const system = `You are an expert software engineer that implements GitHub issue
 
 If the issue involves adding a new GitHub Actions workflow, create these files:
 
-1. `workflows/{name}/workflow.yml` — the workflow YAML
-2. `workflows/{name}/agent.ts` — the agent entrypoint (system prompt + runAgent call)
+1. \`workflows/{name}/workflow.yml\` — the workflow YAML
+2. \`workflows/{name}/agent.ts\` — the agent entrypoint (system prompt + runAgent call)
 
-Do **not** attempt to write to `.github/workflows/` — the GITHUB_TOKEN does not have the `workflow` OAuth scope required to write workflow files via the API and the call will fail. The maintainer will copy the file to `.github/workflows/` when merging the PR.
+Do **not** attempt to write to \`.github/workflows/\` — the GITHUB_TOKEN does not have the \`workflow\` OAuth scope required to write workflow files via the API and the call will fail. The maintainer will copy the file to \`.github/workflows/\` when merging the PR.
 
 ## Rules
 
