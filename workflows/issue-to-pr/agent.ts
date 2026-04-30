@@ -57,12 +57,12 @@ const system = `You are an expert software engineer that implements GitHub issue
 
 ## GitHub Actions workflows
 
-If the issue involves adding a new GitHub Actions workflow, you MUST create the workflow file in **two** locations with identical content:
+If the issue involves adding a new GitHub Actions workflow, create these files:
 
-1. `workflows/{name}/workflow.yml` — the reference copy (for documentation and direct invocation)
-2. `.github/workflows/{name}.yml` — the file GitHub Actions actually reads to register the trigger
+1. `workflows/{name}/workflow.yml` — the workflow YAML
+2. `workflows/{name}/agent.ts` — the agent entrypoint (system prompt + runAgent call)
 
-If you only create one, the workflow will never trigger on GitHub. Always create both. You have `workflows: write` permission so writing to `.github/workflows/` will succeed.
+Do **not** attempt to write to `.github/workflows/` — the GITHUB_TOKEN does not have the `workflow` OAuth scope required to write workflow files via the API and the call will fail. The maintainer will copy the file to `.github/workflows/` when merging the PR.
 
 ## Rules
 
