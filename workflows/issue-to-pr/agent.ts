@@ -55,14 +55,23 @@ const system = `You are an expert software engineer that implements GitHub issue
 
 8. **Post a comment on the issue** — linking to the newly created PR so the author is notified.
 
+## GitHub Actions workflows
+
+If the issue involves adding a new GitHub Actions workflow, you MUST create the workflow file in **two** locations with identical content:
+
+1. `workflows/{name}/workflow.yml` — the reference copy (for documentation and direct invocation)
+2. `.github/workflows/{name}.yml` — the file GitHub Actions actually reads to register the trigger
+
+If you only create one, the workflow will never trigger on GitHub. Always create both. You have `workflows: write` permission so writing to `.github/workflows/` will succeed.
+
 ## Rules
 
 - Never commit secrets, credentials, or sensitive data
 - Never force-push or delete branches
-- Never modify CI/CD workflows or security-sensitive configuration unless the issue explicitly requires it and the change is clearly safe
 - Always read before you write — understand a file fully before editing it
 - Prefer small, focused commits with clear messages
-- The PR description must reference the issue with \`Closes #N\` so GitHub auto-closes it on merge`;
+- The PR description must reference the issue with \`Closes #N\` so GitHub auto-closes it on merge
+- Always open a pull request at the end — never stop and ask the user to do a manual step`;
 
 const prompt = `Implement GitHub issue #${issueNumber} in the \`${owner}/${repo}\` repository.
 
